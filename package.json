@@ -1,0 +1,26 @@
+{
+  "name": "primo-explore-oai-link",
+  "version": "1.1.1",
+  "description": "Provides link to Open Access content for articles in full display, when available.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alliance-PCJWG/primo-explore-oadoi-link.git"
+  },
+  "keywords": [
+    "library",
+    "catalog",
+    "discovery",
+    "primo",
+    "primo-explore",
+    "exlibris",
+    "open access",
+    "oadoi"
+  ],
+  "author": "Jeremy McWilliams <jeremym@lclark.edu>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Alliance-PCJWG/primo-explore-oadoi-link/issues"
+  },
+  "homepage": "https://github.com/Alliance-PCJWG/primo-explore-oadoi-link/blob/master/README.md"
+}

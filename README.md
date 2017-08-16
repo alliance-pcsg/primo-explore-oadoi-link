@@ -19,7 +19,7 @@ In a full display record, checks for the presence of a DOI. Queries the [OADOI A
     ```
 4. Install this package:
     ```
-    npm install primo-explore-report-problem --save-dev
+    npm install primo-explore-oadoi-link --save-dev
     ```
 
 ## Usage
