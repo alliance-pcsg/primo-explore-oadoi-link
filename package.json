@@ -1,6 +1,6 @@
 {
   "name": "primo-explore-oadoi-link",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Provides link to Open Access content for articles in primo-explore full display, when available.",
   "main": "index.js",
   "scripts": {
