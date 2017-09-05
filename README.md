@@ -2,7 +2,7 @@
 Provides link to Open Access content for articles, when available
 
 ## Features
-In a full display record, checks for the presence of a DOI. Queries the [OADOI API](https://oadoi.org/api), and upon the presence of an open access link, displays a bar with the link under the "View It" section.
+In a full display record, checks for the presence of a DOI. Queries the [OADOI API (v2)](https://oadoi.org/api/v2), and upon the presence of an open access link, displays a bar with the link under the "View It" section.
 
 ### Screenshot
 ![screenshot](screenshot.png)
@@ -40,12 +40,14 @@ You can configure the banner by passing a configuration object. All properties a
 | name      | type         | usage                                                                                   |
 |-----------|--------------|-----------------------------------------------------------------------------------------|
 | `imagePath` | string       | icon for next to the image link                                               |
+| `email` | string       | email address attached to api query                                               |
 
 The code below adds a banner similar to the above image.
 
 ```js
 app.constant('oadoiOptions', {
-  "imagePath": "custom/LCC/img/oa_50.png"
+  "imagePath": "custom/LCC/img/oa_50.png",
+  "email": "youremail@domain.com"
 })
 ```
 
