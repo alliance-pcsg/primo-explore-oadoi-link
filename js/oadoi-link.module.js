@@ -6,6 +6,7 @@ angular
         this.$onInit = function() {
         	$scope.oaDisplay=false; /* default hides template */
           $scope.imagePath=oadoiOptions.imagePath;
+          var email=oadoiOptions.email;
         	var section=$scope.$parent.$ctrl.service.scrollId;
         	var obj=$scope.$ctrl.parentCtrl.item.pnx.addata;
 
@@ -14,12 +15,12 @@ angular
         		console.log("doi:"+doi)
 
     				if (doi && section=="getit_link1_0"){
-    					var url="https://api.oadoi.org/"+doi;
+    					var url="https://api.oadoi.org/v2/"+doi+"?email="+email;
 
               var response=oadoiService.getOaiData(url).then(function(response){
                 console.log("it worked");
                 console.log(response);
-                var oalink=response.data.results[0].free_fulltext_url;
+                var oalink=response.data.best_oa_location.url;
                 console.log(oalink);
                 if(oalink===null){
                   $scope.oaDisplay=false;
