@@ -3,15 +3,15 @@ angular
   .component('prmSearchResultAvailabilityLineAfter', {
     bindings: { parentCtrl: '<'},
     template: `
-      <oadoi-results ng-if="{{$ctrl.showOnResultsPage}} && !{{$ctrl.isFullView}}">
+      <oadoi-results ng-if="$ctrl.show">
         <div layout="flex" ng-if="$ctrl.best_oa_link" class="layout-row" style="margin-top: 5px;">
           <prm-icon icon-type="svg" svg-icon-set="action" icon-definition="ic_lock_open_24px"></prm-icon>
           <a class="arrow-link-button md-primoExplore-theme md-ink-ripple" style="margin-left: 3px; margin-top: 3px;"
              target="_blank" href="{{$ctrl.best_oa_link}}"><strong>Open Access</strong> available via unpaywall</a>
           <prm-icon link-arrow icon-type="svg" svg-icon-set="primo-ui" icon-definition="chevron-right"></prm-icon>
         </div>
-        <div class="layout-row">
-          <table ng-if="$ctrl.debug">
+        <div ng-if="$ctrl.debug" class="layout-row">
+          <table>
             <tr><td><strong>doi</strong></td><td>{{$ctrl.doi}}</td></tr>
             <tr><td><strong>is_OA</strong></td><td>{{$ctrl.is_oa}}</td>
             <tr><td><strong>best_oa_link</strong></td><td>{{$ctrl.best_oa_link}}</td></tr>
@@ -20,11 +20,15 @@ angular
       </oadoi-results>`,
     controller:
       function oadoiResultsCtrl(oadoiOptions, $scope, $element, $http) {
-        // ensure that preference is set to display
+        // get data from oadoiOptions
         var self = this;
-        self.showOnResultsPage = oadoiOptions.showOnResultsPage;
-        if(!self.showOnResultsPage){ return; }
         self.debug = oadoiOptions.debug;
+        var showOnResultsPage = oadoiOptions.showOnResultsPage;
+
+        // ensure that preference is set to display
+        var onFullView = this.parentCtrl.isFullView || this.parentCtrl.isOverlayFullView;
+        self.show = showOnResultsPage && !onFullView;
+        if(!showOnResultsPage){ return; }
 
         // get the item from the component's parent controller
         var item = this.parentCtrl.result;
