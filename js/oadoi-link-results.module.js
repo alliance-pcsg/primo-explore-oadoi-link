@@ -3,7 +3,7 @@ angular
   .component('prmSearchResultAvailabilityLineAfter', {
     bindings: { parentCtrl: '<'},
     template: `
-      <oadoi-results ng-if="!{{$ctrl.isFullView}}">
+      <oadoi-results ng-if="{{$ctrl.showOnResultsPage}} && !{{$ctrl.isFullView}}">
         <div layout="flex" ng-if="$ctrl.best_oa_link" class="layout-row" style="margin-top: 5px;">
           <prm-icon icon-type="svg" svg-icon-set="action" icon-definition="ic_lock_open_24px"></prm-icon>
           <a class="arrow-link-button md-primoExplore-theme md-ink-ripple" style="margin-left: 3px; margin-top: 3px;"
@@ -19,10 +19,15 @@ angular
         </div>
       </oadoi-results>`,
     controller:
-      function unpaywallController(oadoiOptions, $scope, $element, $http) {
+      function oadoiResultsCtrl(oadoiOptions, $scope, $element, $http) {
+        // ensure that preference is set to display
         var self = this;
-        var item = this.parentCtrl.result;
+        self.showOnResultsPage = oadoiOptions.showOnResultsPage;
+        if(!self.showOnResultsPage){ return; }
         self.debug = oadoiOptions.debug;
+
+        // get the item from the component's parent controller
+        var item = this.parentCtrl.result;
         try{
 
           // obtain doi and open access information from the item PNX (metadata)
@@ -46,7 +51,7 @@ angular
           }
         }catch(e){
           if(self.debug){
-            console.log("error caught in unpaywallController: " + e);
+            console.log("error caught in oadoiResultsCtrl: " + e);
           }
         }
       }
