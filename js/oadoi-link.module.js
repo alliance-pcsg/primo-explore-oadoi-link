@@ -13,7 +13,7 @@ angular
 
         	if (obj.hasOwnProperty("doi")){
         		var doi=obj.doi[0];
-            if(debug){ console.log("doi:"+doi); }
+						if(debug){ console.log("doi:"+doi); }
 
     				if (doi && section=="getit_link1_0"){
     					var url="https://api.oadoi.org/v2/"+doi+"?email="+email;
