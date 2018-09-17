@@ -1,7 +1,7 @@
 angular
   .module('oadoi', [])
   .component('prmFullViewServiceContainerAfter', {
-  bindings: { parentCtrl: '<' },
+    bindings: { parentCtrl: '<' },
     controller: function controller($scope, $http, $element, oadoiService, oadoiOptions) {
         this.$onInit = function() {
         	$scope.oaDisplay=false; /* default hides template */
@@ -9,25 +9,28 @@ angular
           var email=oadoiOptions.email;
         	var section=$scope.$parent.$ctrl.service.scrollId;
         	var obj=$scope.$ctrl.parentCtrl.item.pnx.addata;
+          var debug=oadoiOptions.debug;
 
         	if (obj.hasOwnProperty("doi")){
         		var doi=obj.doi[0];
-        		console.log("doi:"+doi)
+            if(debug){ console.log("doi:"+doi); }
 
     				if (doi && section=="getit_link1_0"){
     					var url="https://api.oadoi.org/v2/"+doi+"?email="+email;
 
               var response=oadoiService.getOaiData(url).then(function(response){
-                console.log("it worked");
-                console.log(response);
+                if(debug){
+                  console.log("response from oadoiService received:");
+                  console.log(response);
+                }
                 var oalink=response.data.best_oa_location.url;
-                console.log(oalink);
                 if(oalink===null){
                   $scope.oaDisplay=false;
-                  console.log("it's false");
+                  if(debug){ console.log("oaDisplay set to false (no link returned)"); }
                   $scope.oaClass="ng-hide";
                 }
                 else{
+                  if(debug){ console.log("oalink from response: " + oalink); }
                   $scope.oalink=oalink;
                   $scope.oaDisplay=true;
                   $element.children().removeClass("ng-hide"); /* initially set by $scope.oaDisplay=false */
@@ -35,8 +38,6 @@ angular
                 }
 
               });
-
-
     				}
     				else{$scope.oaDisplay=false;
     				}
