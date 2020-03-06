@@ -1,5 +1,6 @@
 # primo-explore-oadoi-link
-Provides link to Open Access content for articles, when available
+Provides link to Open Access content for articles, when available.  This is similar to the Unpaywall feature added in the 2019 November Primo release.  Documentation explaining the differences between this customization and the Unpaywall feature can be found here:
+[Unpaywall in Alma, OADOI Customization in Primo (and Other Open Access)](https://docs.google.com/document/d/1RBz7l4_KTrA7PsXFxATpyjEV-oG3siZW1QjRPxc5ebk/edit?usp=sharing)
 
 ## Features
 In a full display record, checks for the presence of a DOI. Queries the [OADOI API (v2)](https://oadoi.org/api/v2), and upon the presence of an open access link, displays a bar with the link under the "View It" section.
